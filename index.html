@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/w3.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<title>WYSWIG Editor</title>
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="/google-icon.css" rel="stylesheet">
+    </head>
+    <style>
+        .toolbar a
+        {
+            width:30px;
+            height:25px;
+            padding: 5px;
+        }
+
+.fore-wrapper:hover,
+.back-wrapper:hover {
+  background: #f2f2f2;
+  border-color: #8c8c8c;
+}
+
+.fore-palette,
+.back-palette {
+  display: none;
+}
+
+.fore-wrapper,
+.back-wrapper {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.fore-wrapper:hover .fore-palette,
+.back-wrapper:hover .back-palette {
+  display: block;
+  float: left;
+  position: absolute;
+  padding: 3px;
+  width: 160px;
+  background: #FFF;
+  border: 1px solid #DDD;
+  box-shadow: 0 0 5px #CCC;
+  height: 70px;
+}
+
+.fore-palette a,
+.back-palette a {
+  background: #FFF;
+  margin-bottom: 2px;
+}
+    </style>
+    <body>
+        <div class="w3-container">
+            <div class="w3-container w3-content w3-border w3-border-blue w3-round-large w3-topbar w3-leftbar w3-rightbar" style="width:60%;height:400px;padding:0;margin-top:100px;">
+                <div class="w3=panel w3-center" style="width:100%;height:10%;"><h3>WYSIWIG Editor</h3></div>
+                <div class="toolbar w3-btn-bar w3-blue w3-center" style="width:100%;height:10%;margin:0;">
+                   <a href="#" data-command='undo' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-undo'></i></a>
+                    <a href="#" data-command='redo' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-repeat'></i></a>
+                    <div class="fore-wrapper" class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-font' style='color:#C96;'></i>
+                        <div class="fore-palette">
+                        </div>
+                    </div>
+                    <div class="back-wrapper"><i class='fa fa-font' style='background:#C96;'></i>
+                        <div class="back-palette">
+                        </div>
+                    </div>
+                    <a href="#" data-command='bold' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-bold'></i></a>
+                    <a href="#" data-command='italic' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-italic'></i></a>
+                    <a href="#" data-command='underline' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-underline'></i></a>
+                    <a href="#" data-command='justifyLeft' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-align-left'></i></a>
+                    <a href="#" data-command='justifyCenter' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-align-center'></i></a>
+                    <a href="#" data-command='justifyRight' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-align-right'></i></a>
+                    <a href="#" data-command='justifyFull' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-align-justify'></i></a>
+                    <a href="#" data-command='indent' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-indent'></i></a>
+                    <a href="#" data-command='outdent' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-outdent'></i></a>
+                    <a href="#" data-command='insertUnorderedList' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-list-ul'></i></a>
+                    <a href="#" data-command='insertOrderedList' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-list-ol'></i></a>
+                    <a href="#" data-command='h1' class="w3-bar-item w3-btn w3-hover-black">H1</a>
+                    <a href="#" data-command='h2' class="w3-bar-item w3-btn w3-hover-black">H2</a>
+                    <a href="#" data-command='createlink' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-link'></i></a>
+                    <a href="#" data-command='unlink' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-unlink'></i></a>
+                    <a href="#" data-command='insertimage' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-image'></i></a>
+                    <a href="#" data-command='p' class="w3-bar-item w3-btn w3-hover-black">P</a>
+                    <a href="#" data-command='subscript' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-subscript'></i></a>
+                    <a href="#" data-command='superscript' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-superscript'></i></a>
+                </div>
+                <div id="textarea" contenteditable="true">This the text area</div>
+            </div>
+        </div>
+        <script>
+            var colorPalette = ['000000', 'FF9966', '6699FF', '99FF66', 'CC0000', '00CC00', '0000CC', '333333', '0066FF', 'FFFFFF'];
+            var forePalette = $('.fore-palette');
+            var backPalette = $('.back-palette');
+
+            for (var i = 0; i < colorPalette.length; i++) {
+                forePalette.append('<a href="#" data-command="forecolor" data-value="' + '#' + colorPalette[i] + '" style="background-color:' + '#' + colorPalette[i] + ';" class="palette-item"></a>');
+                backPalette.append('<a href="#" data-command="backcolor" data-value="' + '#' + colorPalette[i] + '" style="background-color:' + '#' + colorPalette[i] + ';" class="palette-item"></a>');
+            }
+
+            $('.toolbar a').click(function(e) {
+                var command = $(this).data('command');
+                if (command == 'h1' || command == 'h2' || command == 'p') {
+                    document.execCommand('formatBlock', false, command);
+                }
+                if (command == 'forecolor' || command == 'backcolor') {
+                    document.execCommand($(this).data('command'), false, $(this).data('value'));
+                }
+                if (command == 'createlink' || command == 'insertimage') {
+                  url = prompt('Enter the link here: ', 'http:\/\/');
+                  document.execCommand($(this).data('command'), false, url);
+                } else document.execCommand($(this).data('command'), false, null);
+              });
+        </script>
+    </body>
+</html>
