@@ -20,77 +20,40 @@
             height:25px;
             padding: 5px;
         }
-
-.fore-wrapper:hover,
-.back-wrapper:hover {
-  background: #f2f2f2;
-  border-color: #8c8c8c;
-}
-
-.fore-palette,
-.back-palette {
-  display: none;
-}
-
-.fore-wrapper,
-.back-wrapper {
-  display: inline-block;
-  cursor: pointer;
-}
-
-.fore-wrapper:hover .fore-palette,
-.back-wrapper:hover .back-palette {
-  display: block;
-  float: left;
-  position: absolute;
-  padding: 3px;
-  width: 160px;
-  background: #FFF;
-  border: 1px solid #DDD;
-  box-shadow: 0 0 5px #CCC;
-  height: 70px;
-}
-
-.fore-palette a,
-.back-palette a {
-  background: #FFF;
-  margin-bottom: 2px;
-}
     </style>
     <body>
         <div class="w3-container">
-            <div class="w3-container w3-content w3-border w3-border-blue w3-round-large w3-topbar w3-leftbar w3-rightbar" style="width:60%;height:400px;padding:0;margin-top:100px;">
-                <div class="w3=panel w3-center" style="width:100%;height:10%;"><h3>WYSIWIG Editor</h3></div>
+            <div class="w3-container w3-content w3-border w3-border-blue w3-round-large w3-topbar w3-leftbar w3-rightbar w3-bottombar" style="width:60%;height:400px;padding:0;margin-top:100px;">
+                <div class="w3-center w3-blue" style="width:100%;height:10%;margin:0;"><h3 style="margin:0;"><b>WYSIWIG Editor</b></h3></div>
                 <div class="toolbar w3-btn-bar w3-blue w3-center" style="width:100%;height:10%;margin:0;">
-                   <a href="#" data-command='undo' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-undo'></i></a>
-                    <a href="#" data-command='redo' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-repeat'></i></a>
-                    <div class="fore-wrapper" class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-font' style='color:#C96;'></i>
-                        <div class="fore-palette">
+                   <a href="#" data-command='undo' class="w3-bar-item w3-btn w3-hover-black" title="Undo"><i class='fa fa-undo'></i></a>
+                    <a href="#" data-command='redo' class="w3-bar-item w3-btn w3-hover-black" title="Redo"><i class='fa fa-repeat'></i></a>
+                    <div class="w3-dropdown-hover w3-left" title="Text-Color">
+                        <button class="w3-button w3-hover-black" style="width:30px;height:25px;padding:5px;color:red;">A</button>
+                        <div class="fore-palette w3-dropdown-content w3-bar-block w3-border w3-border-black" style="padding:5px;">
                         </div>
                     </div>
-                    <div class="back-wrapper"><i class='fa fa-font' style='background:#C96;'></i>
-                        <div class="back-palette">
+                    <div class="w3-dropdown-hover w3-left" title="Background-Color">
+                        <button class="w3-button w3-hover-black" style="width:30px;height:25px;padding:5px;background-color:red;">A</button>
+                        <div class="back-palette w3-dropdown-content w3-bar-block w3-border w3-border-black" style="padding:5px;">
                         </div>
                     </div>
-                    <a href="#" data-command='bold' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-bold'></i></a>
-                    <a href="#" data-command='italic' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-italic'></i></a>
-                    <a href="#" data-command='underline' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-underline'></i></a>
-                    <a href="#" data-command='justifyLeft' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-align-left'></i></a>
-                    <a href="#" data-command='justifyCenter' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-align-center'></i></a>
-                    <a href="#" data-command='justifyRight' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-align-right'></i></a>
-                    <a href="#" data-command='justifyFull' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-align-justify'></i></a>
-                    <a href="#" data-command='indent' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-indent'></i></a>
-                    <a href="#" data-command='outdent' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-outdent'></i></a>
-                    <a href="#" data-command='insertUnorderedList' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-list-ul'></i></a>
-                    <a href="#" data-command='insertOrderedList' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-list-ol'></i></a>
-                    <a href="#" data-command='h1' class="w3-bar-item w3-btn w3-hover-black">H1</a>
-                    <a href="#" data-command='h2' class="w3-bar-item w3-btn w3-hover-black">H2</a>
-                    <a href="#" data-command='createlink' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-link'></i></a>
-                    <a href="#" data-command='unlink' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-unlink'></i></a>
-                    <a href="#" data-command='insertimage' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-image'></i></a>
-                    <a href="#" data-command='p' class="w3-bar-item w3-btn w3-hover-black">P</a>
-                    <a href="#" data-command='subscript' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-subscript'></i></a>
-                    <a href="#" data-command='superscript' class="w3-bar-item w3-btn w3-hover-black"><i class='fa fa-superscript'></i></a>
+                    <a href="#" data-command='bold' class="w3-bar-item w3-btn w3-hover-black" title="Bold"><i class='fa fa-bold'></i></a>
+                    <a href="#" data-command='italic' class="w3-bar-item w3-btn w3-hover-black" title="Italic"><i class='fa fa-italic'></i></a>
+                    <a href="#" data-command='underline' class="w3-bar-item w3-btn w3-hover-black" title="Underline"><i class='fa fa-underline'></i></a>
+                    <a href="#" data-command='justifyLeft' class="w3-bar-item w3-btn w3-hover-black" title="Justify-Left"><i class='fa fa-align-left'></i></a>
+                    <a href="#" data-command='justifyCenter' class="w3-bar-item w3-btn w3-hover-black" title="Justify-Center"><i class='fa fa-align-center'></i></a>
+                    <a href="#" data-command='justifyRight' class="w3-bar-item w3-btn w3-hover-black" title="Justify-Right"><i class='fa fa-align-right'></i></a>
+                    <a href="#" data-command='justifyFull' class="w3-bar-item w3-btn w3-hover-black" title="Justify-Full"><i class='fa fa-align-justify'></i></a>
+                    <a href="#" data-command='indent' class="w3-bar-item w3-btn w3-hover-black" title="Indent"><i class='fa fa-indent'></i></a>
+                    <a href="#" data-command='outdent' class="w3-bar-item w3-btn w3-hover-black" title="Outdent"><i class='fa fa-outdent'></i></a>
+                    <a href="#" data-command='h1' class="w3-bar-item w3-btn w3-hover-black" title="H1">H1</a>
+                    <a href="#" data-command='h2' class="w3-bar-item w3-btn w3-hover-black" title="H2">H2</a>
+                    <a href="#" data-command='createlink' class="w3-bar-item w3-btn w3-hover-black" title="Link"><i class='fa fa-link'></i></a>
+                    <a href="#" data-command='insertimage' class="w3-bar-item w3-btn w3-hover-black" title="Image"><i class='fa fa-image'></i></a>
+                    <a href="#" data-command='p' class="w3-bar-item w3-btn w3-hover-black" title="Paragraph">P</a>
+                    <a href="#" data-command='subscript' class="w3-bar-item w3-btn w3-hover-black" title="Subscript"><i class='fa fa-subscript'></i></a>
+                    <a href="#" data-command='superscript' class="w3-bar-item w3-btn w3-hover-black" title="Superscript"><i class='fa fa-superscript'></i></a>
                 </div>
                 <div id="textarea" contenteditable="true">This the text area</div>
             </div>
@@ -101,8 +64,8 @@
             var backPalette = $('.back-palette');
 
             for (var i = 0; i < colorPalette.length; i++) {
-                forePalette.append('<a href="#" data-command="forecolor" data-value="' + '#' + colorPalette[i] + '" style="background-color:' + '#' + colorPalette[i] + ';" class="palette-item"></a>');
-                backPalette.append('<a href="#" data-command="backcolor" data-value="' + '#' + colorPalette[i] + '" style="background-color:' + '#' + colorPalette[i] + ';" class="palette-item"></a>');
+                forePalette.append('<a class="w3-left w3-btn w3-border" href="#" data-command="forecolor" data-value="' + '#' + colorPalette[i] + '" style="background-color:' + '#' + colorPalette[i] + ';"></a>');
+                backPalette.append('<a class="w3-left w3-btn w3-border" href="#" data-command="backcolor" data-value="' + '#' + colorPalette[i] + '" style="background-color:' + '#' + colorPalette[i] + ';"></a>');
             }
 
             $('.toolbar a').click(function(e) {
