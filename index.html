@@ -17,7 +17,7 @@
         .toolbar a
         {
             width:30px;
-            height:25px;
+            height:30px;
             padding: 5px;
         }
     </style>
@@ -29,12 +29,12 @@
                    <a href="#" data-command='undo' class="w3-bar-item w3-btn w3-hover-black" title="Undo"><i class='fa fa-undo'></i></a>
                     <a href="#" data-command='redo' class="w3-bar-item w3-btn w3-hover-black" title="Redo"><i class='fa fa-repeat'></i></a>
                     <div class="w3-dropdown-hover w3-left" title="Text-Color">
-                        <button class="w3-button w3-hover-black" style="width:30px;height:25px;padding:5px;color:red;">A</button>
+                        <button class="w3-button w3-hover-black" style="width:30px;height:30px;padding:5px;color:black;">A</button>
                         <div class="fore-palette w3-dropdown-content w3-bar-block w3-border w3-border-black" style="padding:5px;">
                         </div>
                     </div>
                     <div class="w3-dropdown-hover w3-left" title="Background-Color">
-                        <button class="w3-button w3-hover-black" style="width:30px;height:25px;padding:5px;background-color:red;">A</button>
+                        <button class="w3-button w3-hover-black" style="width:30px;height:30px;padding:5px;background-color:black;color:white;">A</button>
                         <div class="back-palette w3-dropdown-content w3-bar-block w3-border w3-border-black" style="padding:5px;">
                         </div>
                     </div>
@@ -47,18 +47,40 @@
                     <a href="#" data-command='justifyFull' class="w3-bar-item w3-btn w3-hover-black" title="Justify-Full"><i class='fa fa-align-justify'></i></a>
                     <a href="#" data-command='indent' class="w3-bar-item w3-btn w3-hover-black" title="Indent"><i class='fa fa-indent'></i></a>
                     <a href="#" data-command='outdent' class="w3-bar-item w3-btn w3-hover-black" title="Outdent"><i class='fa fa-outdent'></i></a>
-                    <a href="#" data-command='h1' class="w3-bar-item w3-btn w3-hover-black" title="H1">H1</a>
-                    <a href="#" data-command='h2' class="w3-bar-item w3-btn w3-hover-black" title="H2">H2</a>
+                    <div class="w3-dropdown-click w3-left" title="Format">
+                        <button class="w3-button w3-hover-black" onclick="drop();" style="width:80px;height:30px;padding:5px;">Format <i class="fa fa-caret-down"></i></button>
+                        <div class="headings w3-dropdown-content w3-border w3-bar-block w3-border-black" id="dropdown">
+                            <a href="#" data-command='h1' class="w3-bar-item w3-btn w3-hover-black" title="H1">Heading 1</a>
+                            <a href="#" data-command='h2' class="w3-bar-item w3-btn w3-hover-black" title="H2">Heading 2</a>
+                            <a href="#" data-command='h3' class="w3-bar-item w3-btn w3-hover-black" title="H3">Heading 3</a>
+                            <a href="#" data-command='h4' class="w3-bar-item w3-btn w3-hover-black" title="H4">Heading 4</a>
+                            <a href="#" data-command='p' class="w3-bar-item w3-btn w3-hover-black" title="Paragraph">Paragrph</a>
+                        </div>
+                    </div>
                     <a href="#" data-command='createlink' class="w3-bar-item w3-btn w3-hover-black" title="Link"><i class='fa fa-link'></i></a>
                     <a href="#" data-command='insertimage' class="w3-bar-item w3-btn w3-hover-black" title="Image"><i class='fa fa-image'></i></a>
-                    <a href="#" data-command='p' class="w3-bar-item w3-btn w3-hover-black" title="Paragraph">P</a>
                     <a href="#" data-command='subscript' class="w3-bar-item w3-btn w3-hover-black" title="Subscript"><i class='fa fa-subscript'></i></a>
                     <a href="#" data-command='superscript' class="w3-bar-item w3-btn w3-hover-black" title="Superscript"><i class='fa fa-superscript'></i></a>
                 </div>
-                <div id="textarea" contenteditable="true">This the text area</div>
+                <div id="textarea" contenteditable="true" style="height:80%;">
+                    <h3>This the text area</h3>
+                    Any type of text can be written and edited here.
+                </div>
             </div>
         </div>
         <script>
+            function drop()
+            {
+                var x = document.getElementById("dropdown");
+                if (x.className.indexOf("w3-show") == -1) 
+                {
+                    x.className += " w3-show";
+                } 
+                else
+                { 
+                    x.className = x.className.replace(" w3-show", "");
+                }
+            }
             var colorPalette = ['000000', 'FF9966', '6699FF', '99FF66', 'CC0000', '00CC00', '0000CC', '333333', '0066FF', 'FFFFFF'];
             var forePalette = $('.fore-palette');
             var backPalette = $('.back-palette');
@@ -67,10 +89,9 @@
                 forePalette.append('<a class="w3-left w3-btn w3-border" href="#" data-command="forecolor" data-value="' + '#' + colorPalette[i] + '" style="background-color:' + '#' + colorPalette[i] + ';"></a>');
                 backPalette.append('<a class="w3-left w3-btn w3-border" href="#" data-command="backcolor" data-value="' + '#' + colorPalette[i] + '" style="background-color:' + '#' + colorPalette[i] + ';"></a>');
             }
-
             $('.toolbar a').click(function(e) {
                 var command = $(this).data('command');
-                if (command == 'h1' || command == 'h2' || command == 'p') {
+                if (command == 'h1' || command == 'h2' || command == 'h3' || command == 'h4' || command == 'p') {
                     document.execCommand('formatBlock', false, command);
                 }
                 if (command == 'forecolor' || command == 'backcolor') {
